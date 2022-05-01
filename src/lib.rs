@@ -6,16 +6,18 @@ pub struct Solution {
 
 impl Solution {
     pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
-        let len = nums.len();
-
-        for i in 0..(len-1) {
-            for j in (i+1)..len {
-                if target == nums[i] + nums[j] {
-                    return vec![i as i32, j as i32];
+        let _len_n = nums.len();
+        let mut num_to_idx = HashMap::<i32, usize>::new();
+        for (idx, num) in nums.into_iter().enumerate() {
+            let expected_sum = target - num;
+            match num_to_idx.get(&expected_sum) {
+                Some(&prev_idx) => return vec![prev_idx as i32, idx as i32],
+                _ => {
+                    num_to_idx.insert(num, idx);
                 }
             }
         }
 
-        return vec![0, 0];
+        unreachable!()
     }
 }
