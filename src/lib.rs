@@ -1,10 +1,10 @@
 use std::collections::HashMap;
 
-pub struct Solution {
+pub struct Array {
 
 }
 
-impl Solution {
+impl Array {
     pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
         let _len_n = nums.len();
         let mut num_to_idx = HashMap::<i32, usize>::new();

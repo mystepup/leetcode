@@ -1,6 +1,6 @@
-use leetcode::Solution;
+use leetcode::Array;
 
 fn main() {
-    let result = Solution::two_sum(vec![1, 2, 3], 4);
+    let result = Array::two_sum(vec![1, 2, 3], 4);
     println!("{:?}", result);
 }
