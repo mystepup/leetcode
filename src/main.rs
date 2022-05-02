@@ -1,6 +1,10 @@
 use leetcode::Array;
+use leetcode::Binary;
 
 fn main() {
     let result = Array::two_sum(vec![1, 2, 3], 4);
+    println!("{:?}", result);
+
+    let result = Binary::get_sum(1, 3);
     println!("{:?}", result);
 }

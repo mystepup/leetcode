@@ -1,8 +1,8 @@
 use std::collections::HashMap;
 
-pub struct Array {
+pub struct Array {}
 
-}
+pub struct Binary {}
 
 impl Array {
     pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
@@ -19,5 +19,20 @@ impl Array {
         }
 
         unreachable!()
+    }
+}
+
+impl Binary {
+    pub fn get_sum(a: i32, b: i32) -> i32 {
+        let mut y = b;
+        let mut x = a;
+        let mut carry;
+
+        while y != 0 {
+            carry = x & y;
+            x = x ^ y;
+            y = carry << 1;
+        }
+        return x;
     }
 }
