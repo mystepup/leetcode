@@ -41,22 +41,13 @@ impl Binary {
 
 impl DynamicProgramming {
     pub fn climb_stairs(n: i32) -> i32 {
-        let mut memo = [0; 100];
-        DynamicProgramming::climb_stairs_memoize(n, &mut memo[..])
-    }
+        let n = n as usize;
+        let mut dp = vec![1, 2];
 
-    fn climb_stairs_memoize(n: i32, memo: &mut [i32]) -> i32 {
-        match n {
-            1 => 1,
-            2 => 2,
-            _ => {
-                if memo[n as usize] == 0 {
-                    memo[n as usize] = DynamicProgramming::climb_stairs_memoize(n-1, memo) + DynamicProgramming::climb_stairs_memoize(n-2, memo);
-                    memo[n as usize]
-                } else {
-                    memo[n as usize]
-                }
-            }
+        for i in 2..n {
+            dp.push(dp[i - 1] + dp[i - 2]);
         }
+
+        dp[n - 1]
     }
 }
