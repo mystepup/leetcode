@@ -4,6 +4,8 @@ pub struct Array {}
 
 pub struct Binary {}
 
+pub struct DynamicProgramming {}
+
 impl Array {
     pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
         let _len_n = nums.len();
@@ -34,5 +36,27 @@ impl Binary {
             y = carry << 1;
         }
         return x;
+    }
+}
+
+impl DynamicProgramming {
+    pub fn climb_stairs(n: i32) -> i32 {
+        let mut memo = [0; 100];
+        DynamicProgramming::climb_stairs_memoize(n, &mut memo[..])
+    }
+
+    fn climb_stairs_memoize(n: i32, memo: &mut [i32]) -> i32 {
+        match n {
+            1 => 1,
+            2 => 2,
+            _ => {
+                if memo[n as usize] == 0 {
+                    memo[n as usize] = DynamicProgramming::climb_stairs_memoize(n-1, memo) + DynamicProgramming::climb_stairs_memoize(n-2, memo);
+                    memo[n as usize]
+                } else {
+                    memo[n as usize]
+                }
+            }
+        }
     }
 }
