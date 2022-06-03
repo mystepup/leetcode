@@ -15,6 +15,9 @@ fn main() {
     // let result = Array::max_profit(vec![7, 1, 5, 3, 6, 4]);
     // println!("{}", result);
 
-    let result = Array::contains_duplicate(vec![1,2,3,4]);
-    println!("{}", result);
+    // let result = Array::contains_duplicate(vec![1,2,3,4]);
+    // println!("{}", result);
+
+    let result = Array::product_except_self(vec![0,0]);
+    println!("{:?}", result);
 }
