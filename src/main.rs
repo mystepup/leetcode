@@ -8,6 +8,6 @@ use array::Array;
 // use dynamic_programming::DynamicProgramming;
 
 fn main() {
-    let result = Array::max_product(vec![2,3,-2,4]);
+    let result = Array::find_min(vec![1, 2]);
     println!("{}", result);
 }
