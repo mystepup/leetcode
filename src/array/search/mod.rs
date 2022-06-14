@@ -7,33 +7,33 @@ impl Array {
 
         while left < right {
             let mid = (left + right) / 2;
-
-            if target > nums[mid] {
-                if nums[mid] > nums[right] {
-                    left = mid + 1;
-                } else {
-                    if target < nums[right] {
-                        left = mid + 1;
-                    } else {
-                        right = mid;
-                    }   
-                }
-            } else if target < nums[mid] {
-                if nums[mid] > nums[right] {
-                    if target > nums[right] {
-                        right = mid;
-                    } else {
-                        left = mid + 1;
-                    }
-                } else {
-                    right = mid;
-                }
+            if nums[mid] > nums[right] {
+                left = mid + 1;
             } else {
-                return mid as i32;
+                right = mid;
             }
         }
 
-        if nums[left] == target { left as i32 } else { -1 }
+        let rot = left;
+        left = 0;
+        right = nums.len() - 1;
+
+        while left <= right {
+            let mid = (left + right) / 2;
+            let real_mid = (mid + rot) % nums.len();
+
+            if nums[real_mid] == target {
+                return real_mid as i32;
+            }
+
+            if nums[real_mid] < target {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+
+        -1
     }
 }
 
