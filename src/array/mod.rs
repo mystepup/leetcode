@@ -5,5 +5,6 @@ mod product_except_self;
 mod max_sub_array;
 mod max_product;
 mod find_min;
+mod search;
 
 pub struct Array;
