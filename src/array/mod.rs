@@ -6,5 +6,6 @@ mod max_sub_array;
 mod max_product;
 mod find_min;
 mod search;
+mod three_sum;
 
 pub struct Array;

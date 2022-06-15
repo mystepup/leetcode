@@ -14,3 +14,10 @@ fn search_test() {
 
     assert_eq!(result, 4);
 }
+
+#[test]
+fn thress_sum_test() {
+    let result: Vec<Vec<i32>> = Array::three_sum(vec![]);
+    // println!("{:?}", result);
+    assert_eq!(result, vec![] as Vec<Vec<i32>>);
+}
