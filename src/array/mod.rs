@@ -7,5 +7,6 @@ mod max_product;
 mod find_min;
 mod search;
 mod three_sum;
+mod max_area;
 
 pub struct Array;

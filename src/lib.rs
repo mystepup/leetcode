@@ -21,3 +21,10 @@ fn thress_sum_test() {
     // println!("{:?}", result);
     assert_eq!(result, vec![] as Vec<Vec<i32>>);
 }
+
+#[test]
+fn max_area_test() {
+    let result = Array::max_area(vec![1,8,6,2,5,4,8,3,7]);
+
+    assert_eq!(result, 49);
+}
