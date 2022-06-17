@@ -1,7 +1,8 @@
-mod array;
-use array::Array;
+mod binary;
+use binary::Binary;
 
 fn main() {
-    let result = Array::three_sum(vec![]);
-    println!("{:?}", result);
+    let result = Binary::hammingWeight(4);
+
+    println!("{}", result);
 }
