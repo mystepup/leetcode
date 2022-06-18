@@ -1,4 +1,4 @@
-## O(n) , n is number of bits
+## O(logn)
 
 ---
 
