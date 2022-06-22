@@ -1,8 +1,8 @@
-mod binary;
-use binary::Binary;
+mod dynamic_programming;
+use dynamic_programming::DynamicProgramming;
 
 fn main() {
-    let result = Binary::reverse_bits(2^32-3);
-    println!("{:#032b}", 2^32-3);
-    println!("{:#032b}", result);
+    let result = DynamicProgramming::coin_change(vec![1, 2, 5], 6);
+
+    println!("{}", result);
 }
