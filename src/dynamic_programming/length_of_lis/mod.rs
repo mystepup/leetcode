@@ -1,22 +1,22 @@
+use std::vec;
+
 use crate::dynamic_programming::DynamicProgramming;
 
 impl DynamicProgramming {
     pub fn length_of_lis(nums: Vec<i32>) -> i32 {
-        let n = nums.len();
-        let mut dp = vec![1; n];
-        let mut lis = 1;
+        let mut dp = vec![];
+        dp.push(nums[0]);
 
-        for i in 1..n {
-            for j in 0..i {
-                if nums[i] > nums[j] {
-                    dp[i] = std::cmp::max(dp[i], dp[j] + 1);
-                }
+        for i in 1..nums.len() {
+            match dp.binary_search(&nums[i]) {
+                Ok(n) => (),
+                Err(n) => {
+                    if n >= dp.len() { dp.push(nums[i]) } else { dp[n] = nums[i] }
+                }   
             }
-
-            lis = std::cmp::max(lis, dp[i]);
         }
 
-        lis
+        dp.len() as i32
     }
 }
 
