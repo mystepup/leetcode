@@ -9,7 +9,7 @@ impl DynamicProgramming {
         for i in 1..dp.len() {
             for j in 0..nums.len() {
                 if (i >= (nums[j] as usize)) {
-                    dp[i] += dp[(i as usize) - nums[j]];
+                    dp[i] += dp[i - (nums[j] as usize)];
                 }
             }
         }
