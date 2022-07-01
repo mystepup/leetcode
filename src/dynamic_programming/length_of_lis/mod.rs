@@ -9,7 +9,7 @@ impl DynamicProgramming {
 
         for i in 1..nums.len() {
             match dp.binary_search(&nums[i]) {
-                Ok(n) => (),
+                Ok(_n) => (),
                 Err(n) => {
                     if n >= dp.len() { dp.push(nums[i]) } else { dp[n] = nums[i] }
                 }   

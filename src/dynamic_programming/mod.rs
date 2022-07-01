@@ -6,5 +6,6 @@ mod word_break;
 mod combination_sum4;
 mod rob;
 mod rob2;
+mod num_decodings;
 
 pub struct DynamicProgramming;
