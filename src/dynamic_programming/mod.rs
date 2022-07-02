@@ -7,5 +7,6 @@ mod combination_sum4;
 mod rob;
 mod rob2;
 mod unique_paths;
+mod num_decodings;
 
 pub struct DynamicProgramming;
