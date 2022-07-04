@@ -8,5 +8,6 @@ mod rob;
 mod rob2;
 mod unique_paths;
 mod num_decodings;
+mod can_jump;
 
 pub struct DynamicProgramming;
