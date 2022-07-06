@@ -1,8 +1,8 @@
-mod dynamic_programming;
-use dynamic_programming::DynamicProgramming;
+mod graph;
+use graph::Graph;
 
 fn main() {
-    let result = DynamicProgramming::num_decodings("123".to_string());
+    let result = Graph::can_finish(3, vec![vec![2, 0], vec![0,1]]);
 
-    println!("{}", result)
+    println!("{:?}", result);
 }
