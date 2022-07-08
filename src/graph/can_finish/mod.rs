@@ -4,59 +4,61 @@ use super::Graph;
 
 impl Graph {
     pub fn can_finish(num_courses: i32, prerequisites: Vec<Vec<i32>>) -> bool {
-        if prerequisites.len() == 0 {
+        let mut adjacency_list: HashMap<i32, Vec<i32>> = HashMap::new();
+
+        // create adjacent list
+        for courses in prerequisites.iter() {
+            let prev_course = courses[1];
+            let curr_course = courses[0];
+
+            match adjacency_list.get_mut(&prev_course) {
+                Some(course) => {
+                    course.push(curr_course);
+                },
+                None => {
+                    adjacency_list.insert(prev_course, vec![curr_course]);
+                }
+            }
+        }
+
+        let mut visited = vec![false;num_courses as usize];
+        let mut checked = vec![false;num_courses as usize];
+
+        for curr_course in 0..num_courses {
+            if Graph::is_cyclic(&adjacency_list, curr_course, &mut visited, &mut checked) {
+                return false;
+            }
+        }
+
+        true
+    }
+
+    fn is_cyclic(adjacency_list: &HashMap<i32, Vec<i32>>, curr_course: i32, visited: &mut Vec<bool>, checked: &mut Vec<bool>) -> bool {
+        if checked[curr_course as usize] {
+            return false;
+        }
+        
+        if visited[curr_course as usize] {
+            return true;
+        }
+
+        if !adjacency_list.contains_key(&curr_course) {
             return false;
         }
 
-        let mut course_to_prerequisite: HashMap<i32, Vec<i32>> = HashMap::new();
+        visited[curr_course as usize] = true;
+        let mut result = false;
 
-        let mut find_start = vec![false; num_courses as usize];
-
-        for courses in prerequisites.iter() {
-            find_start[courses[0] as usize] = true;
-            match course_to_prerequisite.get_mut(&courses[1]) {
-                Some(c) => {
-                    c.push(courses[0]);
-                },
-                None => {
-                    course_to_prerequisite.insert(courses[1], vec![courses[0]]);
-                }
-            };
-        }
-
-        let start = match find_start.into_iter().position(|x| x == false) {
-            Some(ok) => return true,
-            None => {
-                return false;
-            }
-        };
-
-        let mut visited = vec![false; num_courses as usize];
-        let mut stack: Vec<i32> = Vec::new();
-
-        stack.push(start);
-        while stack.len() != 0 {
-            let v = stack.pop().unwrap();
-
-            if visited[v as usize] != true {
-                visited[v as usize] = true;
-                match course_to_prerequisite.get(&v) {
-                    Some(pre) => {
-                        for &p in pre.iter() {
-                            stack.push(p);
-                        }
-                    },
-                    None => {} 
-                };
-
+        for &next_course in adjacency_list.get(&curr_course).unwrap().iter() {
+            result = Graph::is_cyclic(adjacency_list, next_course, visited, checked);
+            if result {
+                break;
             }
         }
 
-        match visited.into_iter().find(|&x| x == false) {
-            Some(_) => false,
-            None => true
-        }
-
+        visited[curr_course as usize] = false;
+        checked[curr_course as usize] = true;
+        return result;
     }
 }
 
